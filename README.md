@@ -185,4 +185,4 @@ Para cada modelo, se entrenó con un conjunto de entrenamiento (80%) y se evalu�
 
 ---
 
-Este README cubre el proceso completo de análisis, preprocesamiento y entrenamiento de modelos. Si necesitas más detalles o ajustes en alguna sección, no dudes en preguntar.
+Este README cubre el proceso completo de análisis, preprocesamiento y entrenamiento de modelos.

@@ -1,4 +1,3 @@
-
 # **Proyecto de Clasificación de Condición de Productos (Nuevo vs Usado)**
 
 ## **1. Introducción**
@@ -13,7 +12,11 @@ Este README cubre ambos pasos, explicando los procesos, las herramientas utiliza
 ---
 
 ## **2. Requerimientos del Proyecto**
-
+Antes configura un venv:
+```
+Linux
+python3 -m venv venv
+```
 Para ejecutar este proyecto, necesitarás las siguientes bibliotecas de Python:
 
 - `pandas` para manipulación de datos.
@@ -25,11 +28,12 @@ Para ejecutar este proyecto, necesitarás las siguientes bibliotecas de Python:
 Las bibliotecas se instalan a partir del archivo **`requirements.txt`** que está ubicado en la ruta **`../source/`**. Para instalar las dependencias, ejecuta el siguiente comando:
 
 ```
-instalar el entorno con pip install ipykernel y reiniciar visual en caso de no salga el venv
-
 pip install -r source/requirements.txt
 ```
-Se requiere poner el MlA_100k.jsonlines en la carpeta de source antes de correr el notebook del EDA
+instalar el entorno con pip install ipykernel y reiniciar visual en caso de que no aparezca el venv como interprete
+
+Se requiere poner el **MlA_100k.jsonlines** en la carpeta de **source** antes de correr el notebook del EDA.
+
 ---
 
 ## **3. Análisis Exploratorio de Datos (EDA)**
@@ -94,10 +98,10 @@ Varias gráficas fueron generadas para explorar las relaciones y distribuciones 
 
 Las visualizaciones y el análisis preliminar mostraron lo siguiente:
 
-- La **distribución de `condition`** mostró que las clases `new` y `used` están bastante equilibradas.
-- La **matriz de correlación** reveló que hay relaciones fuertes entre algunas variables numéricas (como `price` y `base_price`), lo que podría ayudar en el modelo.
-- El **boxplot de `price`** mostró la presencia de **outliers** con precios extremadamente altos. Esto es importante para considerar cómo manejar esos valores antes de entrenar el modelo.
-- El **gráfico de dispersión** entre `price` y `base_price` mostró una relación clara entre ambas variables, con algunos valores atípicos.
+- **Distribución de `condition`**: La distribución entre `new` y `used` está equilibrada, lo que es positivo para la clasificación, ya que no se observa un desbalance extremo entre las clases.
+- **Matriz de correlación**: Se encontró una relación moderada entre el `price` y `base_price`, lo que es útil, ya que sugiere que estas dos características son predictoras relevantes.
+- **Boxplot de `price`**: Se detectaron **outliers** en los precios, con algunos productos con precios extremadamente altos. Es fundamental tratar estos valores para evitar que afecten el rendimiento de los modelos.
+- **Gráfico de dispersión**: El gráfico entre `price` y `base_price` mostró una fuerte correlación, lo que indica que estos valores están fuertemente relacionados.
 
 ---
 
@@ -173,15 +177,21 @@ Para cada modelo, se entrenó con un conjunto de entrenamiento (80%) y se evalu�
 
 ### **5.4. Conclusiones de los Modelos**
 
-- **XGBoost** y **Random Forest** tienen un desempeño similar y son significativamente mejores que **Regresión Logística** en términos de **accuracy** y **f1-score**.
-- **Random Forest** y **XGBoost** son los modelos recomendados para este conjunto de datos, con **XGBoost** mostrando una ligera ventaja en la **precisión** para la clase **`new`**.
+- **XGBoost** y **Random Forest** son claramente superiores a **Regresión Logística** en términos de **accuracy** y **f1-score**. Ambos modelos presentan un **rendimiento robusto**, con una ligera ventaja de **XGBoost** en la **precisión** de la clase `new` y un mejor **recall** para la clase `used` comparado con **Random Forest**.
+  
+- **Random Forest** tiene un **buen equilibrio entre precisión y recall** en ambas clases, lo que lo convierte en un modelo confiable si la precisión general es importante.
+
+- **XGBoost**, por otro lado, es preferible si se busca **minimizar los falsos positivos** en la clase `new`, y presenta un **mejor recall** para la clase `used`, lo cual es importante para detectar más productos usados.
+
+- **Regresión Logística**, aunque bastante rápida y fácil de interpretar, no se desempeña tan bien debido a la **desbalance de precisión** entre las clases. Sin embargo, podría ser útil como una **línea base** o para tareas donde la **interpretabilidad** sea más importante que la precisión.
 
 ---
 
 ## **6. Conclusiones Generales**
 
 - El **EDA** proporcionó una visión clara de las relaciones entre las variables y la distribución de las clases. Fue crucial para la decisión de preprocesar y manejar **outliers** en el precio.
-- Los modelos de **Random Forest** y **XGBoost** son adecuados para este tipo de clasificación, mientras que la **Regresión Logística** no fue tan efectiva.
+  
+- El modelo de **XGBoost** se destaca por su **rendimiento superior** en comparación con los otros modelos, siendo una excelente opción para este tipo de clasificación.
 
 ---
 

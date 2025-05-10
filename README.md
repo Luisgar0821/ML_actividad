@@ -182,7 +182,6 @@ Para cada modelo, se entrenó con un conjunto de entrenamiento (80%) y se evalu�
 
 - El **EDA** proporcionó una visión clara de las relaciones entre las variables y la distribución de las clases. Fue crucial para la decisión de preprocesar y manejar **outliers** en el precio.
 - Los modelos de **Random Forest** y **XGBoost** son adecuados para este tipo de clasificación, mientras que la **Regresión Logística** no fue tan efectiva.
-- Se recomienda realizar un **ajuste de parámetros** (como el ajuste de hiperparámetros) para mejorar aún más los modelos **Random Forest** y **XGBoost**.
 
 ---
 
